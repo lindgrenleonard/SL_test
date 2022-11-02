@@ -1,30 +1,31 @@
 #include <stdio.h>
 #include <string.h>
 
-int stationParse(char *buff) {
+char* stationParse(char *buff) {
 
-    char *token;
-    token = strtok(buff, " \n");
-    while(token) {
-        printf("putting token: \n\n");
-        puts(token);
-        token = strtok(NULL, " \n");
-    }
+    char *time;
+    char *firstCutoff;
+    char *secondCutoff;
+
+    firstCutoff = strstr(buff, "Jakobsbergs station");
+    secondCutoff = strstr(firstCutoff, "ExpectedDateTime");
+
+    time = strtok(secondCutoff, ",");
+    time = strstr(time, "20");
+    //printf("%s", time);
     
-    return(0);
+    return(time);
 }
 
 
 
-void fileRead() {
+char* fileRead() {
     FILE *fp;
-    char buff[2000];
+    char buff[10000];
     
-    fp = fopen("jsondata.json", "r");
-    fgets(buff, 1000, fp);
-    //puts(buff);
-    stationParse(buff);
-
+    fp = fopen("jsondata2.json", "r");
+    fgets(buff, 9999, fp);
+    return(stationParse(buff));
 }
 
 
@@ -34,7 +35,7 @@ void fileRead() {
 int main() {
 
     printf("Hello World!\n");
-    fileRead();
+    puts(fileRead());
     return(0);
 }
 
