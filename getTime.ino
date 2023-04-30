@@ -4,11 +4,11 @@
 #include <ArduinoHttpClient.h>
 #include <WiFiUdp.h>
 
-const char *ssid     = "Airhome";
-const char *password = "Coco2020";
+const char *ssid     = "ssid";
+const char *password = "password";
 
 const char kHostname[] = "https://api.sl.se";
-const char kPath[] = "/api2/realtimedeparturesV4.xml?key=938f37c5783949a68179014a1315976d&siteid=9201&timewindow=30&Metro=false";
+const char kPath[] = "apikey";
 WiFiClient c;
 HttpClient http(c, kHostname);
 
