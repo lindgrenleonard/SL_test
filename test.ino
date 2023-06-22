@@ -6,7 +6,7 @@
 const char *ssid = "Airhome";
 const char *password = "Coco2020";
 
-const char kHostname[] = "https://api.sl.se";
+const char kHostname[] = "api.sl.se";
 const char kPath[] = "/api2/realtimedeparturesV4.xml?key=938f37c5783949a68179014a1315976d&siteid=9201&timewindow=30&Metro=false";
 WiFiClient c;
 HttpClient http(c, kHostname);
@@ -105,14 +105,10 @@ void loop()
     int err = 0;
 
     timeClient.update();
-    int bodyLen = http.contentLength();
-    while (client.connected())
-    {
-        String line = client.readStringUntil('\r');
-        response += line;
-    }
-    client.stop();
 
-    while (1)
-        ;
-}
+    // Make an API request
+    err = http.get(kPath);
+
+    if (err == 0)
+    {
+        int statusCode = http.responseStatusCode

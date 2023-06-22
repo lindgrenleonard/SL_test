@@ -17,15 +17,6 @@ char *stationParse(char *buff)
     time = strstr(time, "20");
     printf("%s", time);
 
-    struct tm date_time = {0};
-    if (strptime(time, &date_time) == NULL)
-    {
-        // Handle error
-    }
-
-    // Convert the struct tm object into a Unix time
-    time_t unix_time = mktime(&date_time);
-    printf("Unix time: %ld\n", unix_time);
     return (time);
 }
 
